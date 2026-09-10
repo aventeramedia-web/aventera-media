@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef } from 'react';
 import Image from 'next/image';
 import BlobBackground from './BlobBackground';
 
@@ -43,6 +46,38 @@ function CardThumb({ eyebrow, image, alt }) {
   );
 }
 
+function SpotlightCard({ children }) {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--spot-x', `${x}px`);
+    card.style.setProperty('--spot-y', `${y}px`);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-paper/10 bg-gradient-to-b from-[#171514] to-black p-5 transition-colors hover:border-redBright/40"
+    >
+      {/* spotlight glow layer, follows cursor via CSS vars set on mousemove */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            'radial-gradient(320px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,65,65,0.18), transparent 70%)',
+        }}
+      />
+      <div className="relative z-10 flex flex-1 flex-col">{children}</div>
+    </div>
+  );
+}
+
 export default function Services() {
   return (
     <section id="services" className="dot-grid relative overflow-hidden bg-charcoal py-24 md:py-32">
@@ -61,10 +96,7 @@ export default function Services() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {services.map((s) => (
-            <div
-              key={s.name}
-              className="group flex flex-col rounded-2xl border border-paper/10 bg-gradient-to-b from-[#171514] to-black p-5 transition-colors hover:border-redBright/40"
-            >
+            <SpotlightCard key={s.name}>
               <CardThumb eyebrow={s.eyebrow} image={s.image} alt={s.name} />
 
               <h3 className="mt-6 font-body text-2xl font-semibold tracking-[-0.05em] text-paper">
@@ -82,7 +114,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
       </div>
