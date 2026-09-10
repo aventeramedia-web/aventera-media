@@ -12,9 +12,7 @@ export default function Footer() {
           <div className="max-w-sm">
             <LogoMark size="sm" />
             <p className="mt-5 text-sm leading-relaxed text-paper/50">
-              Editing, repurposing and content strategy for founders,
-              podcasters and experts who want to show up like the
-              authority they already are.
+              The storytelling engine for startups, founders and VCs.
             </p>
           </div>
 
