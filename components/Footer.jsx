@@ -55,7 +55,6 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-2 border-t border-paper/10 pt-8 text-xs text-paper/40 sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; {new Date().getFullYear()} Aventera Media</span>
-          <span>Video editing, distribution, content strategy</span>
         </div>
       </div>
     </footer>
