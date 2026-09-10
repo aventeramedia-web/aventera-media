@@ -46,7 +46,7 @@ export default function Hero() {
               Book a call
             </a>
             <a
-              href="mailto:hello@aventeramedia.com"
+              href="mailto:contact@aventeramedia.in"
               className="rounded-full border border-paper/20 px-7 py-3.5 text-[15px] font-medium text-paper transition-colors hover:border-paper/60"
             >
               Email Us

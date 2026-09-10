@@ -42,10 +42,10 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:hello@aventeramedia.com"
+                    href="mailto:contact@aventeramedia.in"
                     className="text-sm text-paper/50 hover:text-paper"
                   >
-                    hello@aventeramedia.com
+                    contact@aventeramedia.in
                   </a>
                 </li>
               </ul>
