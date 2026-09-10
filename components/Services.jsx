@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import BlobBackground from './BlobBackground';
 
 const services = [
@@ -6,29 +7,35 @@ const services = [
     name: 'Podcasting',
     desc: 'We handle end-to-end podcast production and turn every episode into weeks of distributable content.',
     bullets: ['Podcast editing & mixing', 'Multi-platform repurposing', 'Distribution strategy'],
+    image: '/work/podcasting.jpg',
   },
   {
     eyebrow: 'Launch',
     name: 'Launch Videos',
     desc: 'We script, storyboard and produce launch films that make founders and products impossible to ignore.',
     bullets: ['Ideation & scripting', 'Storyboard & shotlist', 'Full video production'],
+    image: '/work/launch-videos.jpg',
   },
   {
     eyebrow: 'Scale',
     name: 'Clipping',
     desc: 'We cut long-form recordings into sharp, scroll-stopping clips built to grow your following fast.',
     bullets: ['Hook-first editing', 'Caption & sound design', 'Daily-ready output'],
+    image: '/work/clipping.jpg',
   },
 ];
 
-function CardThumb({ eyebrow }) {
+function CardThumb({ eyebrow, image, alt }) {
   return (
-    <div className="relative flex h-40 items-end overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2724] to-black p-4">
-      <div
-        className="dot-grid absolute inset-0 opacity-60"
-        style={{ maskImage: 'radial-gradient(circle at 30% 30%, black 0%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle at 30% 30%, black 0%, transparent 70%)' }}
+    <div className="relative flex h-40 items-end overflow-hidden rounded-xl bg-black">
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
       <span className="relative rounded-full bg-gradient-to-br from-redBright to-wine px-3 py-1 text-xs font-semibold text-paper">
         {eyebrow}
       </span>
@@ -58,7 +65,7 @@ export default function Services() {
               key={s.name}
               className="group flex flex-col rounded-2xl border border-paper/10 bg-gradient-to-b from-[#171514] to-black p-5 transition-colors hover:border-redBright/40"
             >
-              <CardThumb eyebrow={s.eyebrow} />
+              <CardThumb eyebrow={s.eyebrow} image={s.image} alt={s.name} />
 
               <h3 className="mt-6 font-body text-2xl font-semibold tracking-[-0.05em] text-paper">
                 {s.name}
